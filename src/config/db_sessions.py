@@ -32,7 +32,7 @@ def create_engine() -> Engine:
         conn_str = f'sqlite:///{arquivo_db}'
         __engine = sa.create_engine(url=conn_str, echo=False, connect_args={"check_same_thread":False}, pool_size=20, max_overflow=50, pool_timeout=60, pool_pre_ping=True, pool_recycle=3600)
         if not Path(arquivo_db).exists():
-            create_tables(sqlite)
+            create_tables()
     
     else:
         conn_str = f'postgresql://{os.environ["PGUSER"]}:{os.environ["PGPASSWORD"]}@{os.environ["PGHOST"]}:{os.environ["PGPORT"]}/{os.environ["PGDATABASE"]}'
