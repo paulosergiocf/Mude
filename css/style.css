@@ -1,0 +1,136 @@
+:root {
+    --color-dark-blue: #2C3E50;
+    --color-dark-gray: #34495E;
+    --color-teal: #1ABC9C;
+    --color-text-white: white;
+    --color-content-background: #2C3E50;
+    --color-border: #1ABC9C;
+    --color-border-dark: #303030;
+}
+
+/* SIDE BAR */
+#sidebar {
+    background-color: var(--color-dark-blue);
+    color: var(--color-text-white);
+    padding: 10px;
+}
+
+/* CONTENT */
+#content-area {
+    background-color: var(--color-content-background);
+    padding: 20px;
+    border-left: 1px solid var(--color-border-dark);
+}
+
+
+
+button {
+    background-color: var(--color-dark-gray);
+    color: var(--color-text-white);
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--color-teal);
+}
+
+
+
+/* CARD TASKS */
+.card-tasks {
+    border: 1px solid var(--color-border);
+    background-color: var(--color-dark-gray);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card-tasks > button {
+    border: var(--color-border) solid 1px; 
+    background-color: var(--color-dark-gray); 
+    background-image: linear-gradient(to right, var(--color-border), var(--color-dark-gray));
+    background-clip: padding-box;
+    color: var(--color-text-white);
+    transition: background-color 0.3s ease;
+}
+
+.card-tasks:hover {
+    transform: scale(1.02);
+}
+
+/* CARD TASK */
+.card-task {
+    border: 1px solid var(--color-border);
+    background-color: var(--color-dark-gray);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.card-task:hover {
+    transform: scale(1.02);
+}
+.card-task button {
+    border: var(--color-border) solid 1px; 
+    background-color: var(--color-dark-gray); 
+    color: var(--color-text-white);
+}
+
+.card-task button:hover {
+    background-color: var(--color-teal);
+}
+
+.card-subtasks-day {
+    background-color: var(--color-dark-gray);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    border: var(--color-border) solid 1px;
+    
+}
+
+.card-subtasks-day button {
+    border: var(--color-border) solid 1px; 
+    background-color: var(--color-dark-gray);
+    color: var(--color-text-white);
+}
+.subtask-item {
+    padding: 3px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.card-subtasks-day .item {
+    background-color: var(--color-dark-gray);
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
+
+.card-subtasks-day .label-task {
+    margin: 3px;
+    border-radius: 5px;
+    padding: 2px 15px 2px 15px;
+    background-color: var(--color-teal); 
+    color: var(--color-content-background);
+}
+ 
+.custom-calendar {
+    background-color: var(--color-content-background);
+    border: var(--color-border) solid 1px; 
+    color:var(--color-text-whiter-);
+}
+
+.custom-calendar > grid > label.selected {
+    background-color: var(--color-border);
+    color: var(--color-border-dark);
+    border-radius: 50%;
+}
