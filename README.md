@@ -4,8 +4,7 @@ Aplicação para apoiar na formação de hábitos, gerencia as metas por
 um tempo longo suficiente para fazer coisas significativas e curto suficiente para ter senso de urgência. 
 
 ## Screenshot
-
-![[img/screenshot.png]]
+![Logo](https://raw.githubusercontent.com/paulosergiocf/Mude/refs/heads/3-correcao-de-paths/img/screeshot.png)
 
 ## Objetivo
 
