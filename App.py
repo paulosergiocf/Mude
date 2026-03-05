@@ -16,14 +16,15 @@ class App(Gtk.Application):
     APPLICATION_NAME = "Mude"
     LOGO = "logo.png"
     FILE_CSS = "css/style.css"
+    VERSION = "0.02"
 
     def __init__(self):
-        super().__init__(application_id="br.com.paulosergiocf.TaskManager")
+        super().__init__(application_id="br.com.paulosergiocf.Mude")
         GLib.set_application_name(self.APPLICATION_NAME)
-        GLib.set_prgname("br.com.paulosergiocf.TaskManager")
+        GLib.set_prgname("br.com.paulosergiocf.Mude")
         
     def do_activate(self):
-        self.window = Gtk.ApplicationWindow(application=self, title=self.APPLICATION_NAME)
+        self.window = Gtk.ApplicationWindow(application=self, title=F"{self.APPLICATION_NAME} - v{self.VERSION}")
         self.window.set_default_size(self.WIDTH, self.HEIGHT)
         icon_theme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default())
         icon_theme.add_search_path(self.LOGO)

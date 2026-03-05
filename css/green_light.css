@@ -1,0 +1,124 @@
+/* SIDE BAR */
+#sidebar {
+    background-color: #2C3E50;
+    color: white;
+    padding: 10px;
+}
+
+/* CONTENT */
+#content-area {
+    background-color: #2C3E50;
+    padding: 20px;
+    border-left: 1px solid #303030;
+}
+
+button {
+    background-color: #34495E;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #1ABC9C;
+}
+
+/* CARD TASKS */
+.card-tasks {
+    border: 1px solid #1ABC9C;
+    background-color: #34495E;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card-tasks > button {
+    border: #1ABC9C solid 1px; 
+    background-color: #34495E; 
+    background-image: linear-gradient(to right, #1ABC9C, #34495E);
+    background-clip: padding-box;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.card-tasks:hover {
+    transform: scale(1.02);
+}
+
+/* CARD TASK */
+.card-task {
+    border: 1px solid #1ABC9C;
+    background-color: #34495E;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card-task:hover {
+    transform: scale(1.02);
+}
+
+.card-task button {
+    border: #1ABC9C solid 1px; 
+    background-color: #34495E; 
+    color: white;
+}
+
+.card-task button:hover {
+    background-color: #1ABC9C;
+}
+
+.card-subtasks-day {
+    background-color: #34495E;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    border: #1ABC9C solid 1px;
+}
+
+.card-subtasks-day button {
+    border: #1ABC9C solid 1px; 
+    background-color: #34495E;
+    color: white;
+}
+
+.subtask-item {
+    padding: 3px;
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.card-subtasks-day .item {
+    background-color: #34495E;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 1px;
+}
+
+.card-subtasks-day .label-task {
+    margin: 3px;
+    border-radius: 5px;
+    padding: 2px 15px 2px 15px;
+    background-color: #1ABC9C; 
+    color: #2C3E50;
+}
+ 
+.custom-calendar {
+    background-color: #2C3E50;
+    border: #1ABC9C solid 1px; 
+    color: white;
+}
+
+.custom-calendar grid label.selected {
+    background-color: #1ABC9C;
+    color: #303030;
+    border-radius: 50%;
+}

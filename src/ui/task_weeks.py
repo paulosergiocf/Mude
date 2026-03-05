@@ -23,6 +23,7 @@ class TaskWeeks(Gtk.Box):
             percentage_progress.set_fraction(week[1] / 100.0)
             percentage_progress.set_show_text(f"{(week[1] / 100.0)}%")
             percentage_progress.set_hexpand(True)
+            percentage_progress.add_css_class("custom-progress")
             info_weeks.append(initial_week_label)
             info_weeks.append(final_week_label)
             info_percentage.append(percentage_progress)
