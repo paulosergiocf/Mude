@@ -5,8 +5,11 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy.future.engine import Engine
 from src.models.model_base import ModelBase
-import os
+from src.config.constants import Plataform
+import platform as pt
 
+import os
+from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -25,7 +28,7 @@ def create_engine() -> Engine:
         return
     
     if sqlite:
-        arquivo_db = 'data/database.sqlite'
+        arquivo_db = __get_data_location()
         folder = Path(arquivo_db).parent
         folder.mkdir(parents=True, exist_ok=True)
 
@@ -49,7 +52,6 @@ def create_session() -> Session:
     return session
 
 
-
 def create_tables() -> None:
     global __engine
     if not __engine:
@@ -58,3 +60,10 @@ def create_tables() -> None:
     from src.models import __all__models
     ModelBase.metadata.drop_all(__engine)
     ModelBase.metadata.create_all(__engine)
+
+
+def __get_data_location():
+    if pt.system() in [Plataform.LINUX.value, Plataform.WINDOWS.value]:
+        return Path(os.path.expanduser('~'), ".mude/data/database.sqlite")
+
+    return "database.sqlite"

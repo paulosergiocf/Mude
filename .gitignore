@@ -207,3 +207,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Flatpak build artifacts
+build-dir/
+repo/
+*.flatpak
+pip_cache/
+.flatpak-builder/
+output
+.continue
+build*

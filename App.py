@@ -18,9 +18,9 @@ class App(Gtk.Application):
     FILE_CSS = "css/style.css"
 
     def __init__(self):
-        super().__init__(application_id="br.com.paulosergiocf.TaskManager")
+        super().__init__(application_id="br.com.paulosergiocf.Mude")
         GLib.set_application_name(self.APPLICATION_NAME)
-        GLib.set_prgname("br.com.paulosergiocf.TaskManager")
+        GLib.set_prgname("br.com.paulosergiocf.Mude")
         
     def do_activate(self):
         self.window = Gtk.ApplicationWindow(application=self, title=self.APPLICATION_NAME)

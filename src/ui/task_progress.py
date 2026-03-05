@@ -33,6 +33,7 @@ class TaskProgress(Gtk.Box):
         percentage_progress.set_fraction(percentage / 100.0)
         percentage_progress.set_show_text(f"{percentage}%")
         percentage_progress.set_hexpand(True) 
+        percentage_progress.add_css_class("custom-progress")
 
         
         percentage_container.append(percentage_progress)
