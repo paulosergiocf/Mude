@@ -29,4 +29,4 @@ Baseada no video: [Como Mudar Sua Vida Em 6 Meses](https://www.youtube.com/watch
 
 ## Licença
 
-Este projeto está licenciado sob a **GNU General Public License v3.0** (GPL-3.0). Veja o arquivo [LICENSE](LICENSE) para o texto completo da licenç
+Este projeto está licenciado sob a **GNU General Public License v3.0** (GPL-3.0). Veja o arquivo [LICENSE](LICENSE) para o texto completo da licença.
