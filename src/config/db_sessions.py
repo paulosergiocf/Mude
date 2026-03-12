@@ -1,16 +1,16 @@
-import sqlalchemy as sa
-from sqlalchemy.orm import sessionmaker
+import os
+import platform as pt
 from pathlib import Path
 from typing import Optional
-from sqlalchemy.orm import Session
-from sqlalchemy.future.engine import Engine
-from src.models.model_base import ModelBase
-from src.config.constants import Plataform
-import platform as pt
 
-import os
-from pathlib import Path
+import sqlalchemy as sa
 from dotenv import load_dotenv
+from sqlalchemy.future.engine import Engine
+from sqlalchemy.orm import Session, sessionmaker
+
+from src.config.constants import Plataform
+from src.models.model_base import ModelBase
+
 load_dotenv()
 
 __engine: Optional[Engine] = None

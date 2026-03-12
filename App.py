@@ -1,12 +1,15 @@
-import sys
-import gi
 import os
+import sys
+
+import gi
 from dotenv import load_dotenv
+
 load_dotenv()
 
 gi.require_version("Gtk", "4.0")
 from gi.repository import GLib, Gtk, Gdk
 from src.ui.content_area import ContentArea
+from src.ui.message_box import MessageBox
 from src.ui.sidebar import Sidebar
 from src.util.config_util import ConfigUtil
 
@@ -16,7 +19,7 @@ class App(Gtk.Application):
     APPLICATION_NAME = "Mude"
     LOGO = "logo.png"
     FILE_CSS = "css/style.css"
-    VERSION = "0.02"
+    VERSION = "0.03"
 
     def __init__(self):
         super().__init__(application_id="br.com.paulosergiocf.Mude")
@@ -41,27 +44,48 @@ class App(Gtk.Application):
 
     def config(self, css_file):
         css_provider = Gtk.CssProvider()
-        if os.path.exists(css_file):
+        custom_theme = os.path.join(ConfigUtil.get_user_location(), "theme/style.css")
+
+        # carregar css personalizado
+        if os.path.exists(custom_theme):
+            css_provider.load_from_path(custom_theme)
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_USER
+            )
+
+        # carregar css padrão da aplicacão
+        elif os.path.exists(css_file):
             css_provider.load_from_path(css_file)
             Gtk.StyleContext.add_provider_for_display(
                 Gdk.Display.get_default(),
                 css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_USER
             )
-        else:
-            raise ValueError(f"CSS file '{css_file}' not found.")
 
     def task_all(self, button):
         ConfigUtil.wait_timeout()
         self.content_area.task_all()
+        
 
     def task_week(self, button):
         ConfigUtil.wait_timeout()
         self.content_area.task_week()
         
-    def quit_app(self, button):
-        self.quit()
 
+    def quit_app(self, button):
+        MessageBox.show_question(
+            self.window,
+            "Confirmar Saída",
+            "Deseja realmente sair do aplicativo?",
+            callback=lambda confirmed: self._confirm_quit(confirmed)
+        )
+    
+    def _confirm_quit(self, confirmed):
+        if confirmed:
+            self.quit()
+       
 if __name__=='__main__':
     try:
         app = App()
@@ -70,3 +94,5 @@ if __name__=='__main__':
     except KeyboardInterrupt as exitKey:
         pass
 
+    except Exception as erro:
+        print(erro)

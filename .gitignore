@@ -215,4 +215,5 @@ pip_cache/
 .flatpak-builder/
 output
 .continue
-build*
+dist/
+*.sqlite

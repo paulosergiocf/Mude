@@ -5,8 +5,9 @@ import os
 gi.require_version("Gtk", "4.0")
 from gi.repository import GLib, Gtk, Gdk
 from src.models.repositories.tasks_repository import TaskRepository
-from src.models.repositories.subtasks_repository import SubTaskRepository
+from src.models.repositories.subtasks_repository import SubTaskRepository, SubTask
 from src.ui.subtask_crud import SubTaskCrud
+from src.ui.message_box import MessageBox 
 
 class SubtasksItem(Gtk.Box):
     def __init__(self, subtask = None, callback = None, main=None):
@@ -52,10 +53,18 @@ class SubtasksItem(Gtk.Box):
         SubTaskRepository.update_subtask(subtask=subtask)
 
     def delete_subtask(self, button):
-        subtask = button.subtask
-        SubTaskRepository.delete_subtask(subtask)
-        if self.callback:
-            self.callback()
+        def delete(confirmed):
+            if confirmed:
+                SubTaskRepository.delete_subtask(subtask)
+                MessageBox.show_info(self.get_root(),"Deletar subtask",f"A subtask {subtask.description}\n foi deletada com sucesso!")
+                if self.callback:
+                    self.callback()
+
+        subtask: SubTask = button.subtask
+        MessageBox.show_question(
+            self.get_root(),"Continuar?",f"Deseja deletar a subtask {subtask.description}",
+            callback=lambda confirmed: delete(confirmed))
+        
 
     def edit_subtask(self, button):
         subtask = button.subtask
