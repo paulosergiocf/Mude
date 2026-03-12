@@ -20,9 +20,9 @@ Download da aplicação [Mude-x86_64.AppImage](https://github.com/paulosergiocf/
 
 ```
 
-base de dados estará localizada no diretorio ```/home/$USER/.mude/data/```.
+A base de dados da aplicação estará localizada no diretorio ```/home/$USER/.mude/data/```.
 
-para customizar o e tema criar ```/home/$USER/.mude/theme/style.css``` (Obs. configurar de acordo com [tema padrão](https://github.com/paulosergiocf/Mude/blob/main/css/style.css)).
+Para customizar o tema criar ```/home/$USER/.mude/theme/style.css``` (Obs. configurar de acordo com [tema padrão](https://github.com/paulosergiocf/Mude/blob/main/css/style.css)).
 
 ### Usuários Windows.
 
