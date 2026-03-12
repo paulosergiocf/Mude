@@ -3,6 +3,31 @@
 Aplicação para apoiar na formação de hábitos, gerencia as metas por
 um tempo longo suficiente para fazer coisas significativas e curto suficiente para ter senso de urgência. 
 
+Implementação de metodo discutido no video: [Como Mudar Sua Vida Em 6 Meses](https://www.youtube.com/watch?v=togozCEmK6A)
+
+
+## Como usar
+
+### Usuários Linux
+
+Download da aplicação [Mude-x86_64.AppImage](https://github.com/paulosergiocf/Mude/releases)
+
+```sh
+    # Atribui permissão
+    chmod +x Mude-x86_64.AppImage
+    # Executar
+    ./Mude-x86_64.AppImage
+
+```
+
+base de dados estará localizada no diretorio ```/home/$USER/.mude/data/```.
+
+para customizar o e tema criar ```/home/$USER/.mude/theme/style.css``` (Obs. configurar de acordo com [tema padrão](https://github.com/paulosergiocf/Mude/blob/main/css/style.css)).
+
+### Usuários Windows.
+
+> Em progresso, aguarde atualizações.
+
 ## Screenshot
 ![Logo](https://raw.githubusercontent.com/paulosergiocf/Mude/refs/heads/3-correcao-de-paths/img/screeshot.png)
 
@@ -23,9 +48,7 @@ Ao final de cada ciclo você avalia quantas ações planejou e quantas realizou:
 
 **Recomendação:** Use essa métrica semanalmente para calibrar suas expectativas e otimizar seu planejamento, garantindo um crescimento sustentável.
 
-## Referências
 
-Baseada no video: [Como Mudar Sua Vida Em 6 Meses](https://www.youtube.com/watch?v=togozCEmK6A)
 
 ## Licença
 
