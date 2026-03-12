@@ -13,7 +13,6 @@ from src.ui.message_box import MessageBox
 from src.ui.sidebar import Sidebar
 from src.util.config_util import ConfigUtil
 
-
 class App(Gtk.Application):
     WIDTH = 1000
     HEIGHT = 800
@@ -45,18 +44,24 @@ class App(Gtk.Application):
 
     def config(self, css_file):
         css_provider = Gtk.CssProvider()
-        if os.path.exists(css_file):
-            css_provider.load_from_path(css_file)
+        custom_theme = os.path.join(ConfigUtil.get_user_location(), "theme/style.css")
+
+        # carregar css personalizado
+        if os.path.exists(custom_theme):
+            css_provider.load_from_path(custom_theme)
             Gtk.StyleContext.add_provider_for_display(
                 Gdk.Display.get_default(),
                 css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_USER
             )
-        else:
-            MessageBox.show_error(
-                self.window,
-                "Erro de Configuração",
-                f"Arquivo CSS '{css_file}' não encontrado.\nO aplicativo usará o tema padrão."
+
+        # carregar css padrão da aplicacão
+        elif os.path.exists(css_file):
+            css_provider.load_from_path(css_file)
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_USER
             )
 
     def task_all(self, button):
@@ -81,42 +86,6 @@ class App(Gtk.Application):
         if confirmed:
             self.quit()
        
-
-    # ========== MÉTODOS DE EXEMPLO PARA USAR MESSAGEBOX ==========
-    
-    def exemplo_erro(self):
-        """Exemplo de mensagem de erro."""
-        MessageBox.show_error(
-            self.window,
-            "Erro",
-            "Não foi possível conectar ao servidor."
-        )
-    
-    def exemplo_aviso(self):
-        """Exemplo de mensagem de aviso."""
-        MessageBox.show_warning(
-            self.window,
-            "Atenção",
-            "Você tem alterações não salvas."
-        )
-    
-    def exemplo_input(self):
-        """Exemplo de input do usuário."""
-        MessageBox.show_input(
-            self.window,
-            "Nova Tarefa",
-            "Digite o nome da nova tarefa:",
-            default_text="Minha tarefa",
-            callback=lambda text: self._on_input_received(text)
-        )
-    
-    def _on_input_received(self, text):
-        if text:
-            print(f"Nova tarefa: {text}")
-            # Processar a tarefa...
-        else:
-            print("Usuário cancelou")
-
 if __name__=='__main__':
     try:
         app = App()
