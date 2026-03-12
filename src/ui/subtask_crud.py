@@ -3,11 +3,16 @@ import gi
 import os
 
 gi.require_version("Gtk", "4.0")
+import datetime
+
 from gi.repository import GLib, Gtk, Gdk
-from src.models.repositories.tasks_repository import TaskRepository
+
 from src.models.repositories.subtasks_repository import SubTaskRepository
-from datetime import date
+from src.models.repositories.tasks_repository import TaskRepository
+from src.models.tasks import Task, sa
+from src.ui.message_box import MessageBox
 from src.util.date_util import DateUtil
+
 
 class SubTaskCrud(Gtk.Box):
     def __init__(self, subtask=None, task=None, button_label= "Criar", callback=None):
@@ -79,12 +84,23 @@ class SubTaskCrud(Gtk.Box):
             month = int(gdt.get_month())
             day = int(gdt.get_day_of_month())
             due_date = f"{year}-{month}-{day}"
-            task = button.task
+            task: Task = button.task
+            
+            date_validation = datetime.date(year=year, month=month, day=day)
+            
+
+            validation = (task.start_date <= date_validation and task.end_date >=date_validation)
+            if not validation:
+                raise ValueError("Vencimento fora do período da task")
+                
+                
             
             SubTaskRepository.create_subtask(description=description,due_date=due_date,task=task)
-        
+            if self.callback:
+                self.callback()
         except Exception as erro:
-            raise erro
+            MessageBox.show_error(self.get_root(),"Erro ao criar subtask",f"{erro}")
+            return
 
-        if self.callback:
-            self.callback()
+        
+   

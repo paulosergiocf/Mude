@@ -10,6 +10,9 @@ from src.util.date_util import DateUtil
 from src.ui.task_weeks import TaskWeeks
 from src.ui.task_crud import TaskCrud
 from src.ui.subtask_crud import SubTaskCrud
+from src.ui.message_box import MessageBox
+
+
 class TaskProgress(Gtk.Box):
     
     def __init__(self, task, percentage,  callback=None):
@@ -65,10 +68,20 @@ class TaskProgress(Gtk.Box):
         self.append(weeks_container)
 
     def delete_task(self, button):
+
+        def delete(confirmed):
+            if confirmed:
+                TaskRepository.delete_task(task)
+                MessageBox.show_info(self.get_root(),"Deletar task",f"A task {task.name}\n foi deletada com sucesso!")
+                if self.callback:
+                    self.callback()
+
         task = button.task
-        TaskRepository.delete_task(task)
-        if self.callback:
-            self.callback()
+
+        MessageBox.show_question(
+            self.get_root(),"Continuar?",f"Deseja deletar a task {task.name}",
+            callback=lambda confirmed: delete(confirmed))
+
 
     def edit_task(self, button):
         self.clear_content()

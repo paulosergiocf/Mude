@@ -11,6 +11,7 @@ from src.ui.task_crud import TaskCrud
 from src.ui.subtasks_day import SubtasksDay
 from src.models.repositories.tasks_repository import TaskRepository
 from src.models.repositories.subtasks_repository import SubTaskRepository
+from src.ui.message_box import MessageBox
 
 class ContentArea(Gtk.Box):
     def __init__(self):
@@ -45,11 +46,18 @@ class ContentArea(Gtk.Box):
         self.content_box.append(TaskCrud(callback=self.task_all))
 
 
-    def task_week(self):
-        self.clear_content()
+    def task_week(self, week=0, next_week=True):
+        window = self.get_root()
         tasks = TaskRepository.get_all()
-        days = SubTaskRepository.list_week(tasks)
-        self.content_box.append(SubtasksDay(days=days, callback=self.task_week))
+        days = SubTaskRepository.list_week(tasks=tasks, week=week, next_week=next_week)
+
+        if not days:
+            MessageBox.show_info(window, "Aviso", "Nenhuma tarefa para ser carrega.")
+            return
+
+        self.clear_content()
+        
+        self.content_box.append(SubtasksDay(days=days, callback=self.task_all))
 
     def clear_content(self):
         while self.get_first_child() is not None:

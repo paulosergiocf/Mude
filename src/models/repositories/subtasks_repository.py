@@ -92,9 +92,11 @@ class SubTaskRepository:
         return weeks_percentage
 
     @staticmethod
-    def list_week(tasks):
-        today = datetime.today().date() - timedelta(days=0)
-        weeks =  DateUtil.get_week_range(today)
+    def list_week(tasks, week=0, next_week=True):
+        today = datetime.today().date()
+        first_day = today + timedelta(weeks=week) if next_week else today - timedelta(weeks=week)
+        weeks =  DateUtil.get_week_range(first_day)
+        
         weeks_percentage = []
         for week in weeks:
             subtask_for_week  = SubTaskRepository.get_subtask_by_tasks_and_filter_date(tasks, weeks[0], weeks[1])

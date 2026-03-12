@@ -24,7 +24,8 @@ class DateUtil:
         
     @staticmethod
     def get_week_range(date):
-        start_of_week = date - timedelta(days=date.weekday())
+        days_since_sunday = date.isoweekday() % 7
+        start_of_week = date - timedelta(days=days_since_sunday)
         end_of_week = start_of_week + timedelta(days=DateUtil.LEN_WEEK - 1)
         return (start_of_week, end_of_week)
     
